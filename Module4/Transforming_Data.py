@@ -166,6 +166,49 @@ len(kidney_df.columns)
 len(kidney_df)
 
 
+# In[34]:
+
+# Create some color coded labels; the actual label feature
+# will be removed prior to executing PCA, since it's unsupervised.
+# You're only labeling by color so you can see the effects of PCA
+labels = ['red' if i=='ckd' else 'green' for i in kidney_df.classification]
+
+
+# TODO: Use an indexer to select only the following columns:
+#       ['bgr','wc','rc']
+#
+# .. your code here ..
+
+kidney_df1 = kidney_df[['bgr','wc','rc']]
+kidney_df1.head()
+
+
+# In[35]:
+
+# TODO: Print out and check your dataframe's dtypes. You'll might
+# want to set a breakpoint after you print it out so you can stop the
+# program's execution.
+#
+# You can either take a look at the dataset webpage in the attribute info
+# section: https://archive.ics.uci.edu/ml/datasets/Chronic_Kidney_Disease
+# or you can actually peek through the dataframe by printing a few rows.
+# What kind of data type should these three columns be? If Pandas didn't
+# properly detect and convert them to that data type for you, then use
+# an appropriate command to coerce these features into the right type.
+#
+# .. your code here ..
+##checked them, bgr is float(true), wc false(should be float), rc false(should be numeric)
+
+kidney_df1.dtypes
+kidney_df1.head()
+
+
+# In[36]:
+
+kidney_df1[['wc', 'rc']] = kidney_df1[['wc', 'rc']].apply(pd.to_numeric)
+kidney_df1.dtypes
+
+
 # In[ ]:
 
 import pandas as pd
